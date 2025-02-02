@@ -1,0 +1,38 @@
+syms q1 q2 q3 l0 l1 l2 l3;
+
+
+T0 = [cos(q1), -sin(q1), 0,  0;
+      sin(q1),  cos(q1), 0,  0;
+      0,        0,       1,  0;
+      0,        0,       0,  1];
+
+T1 = [cos(q2), -sin(q2), 0, l1;
+       0,       0,      -1,  0;
+       sin(q2), cos(q2), 0,  0;
+       0,      0,       0,  1];
+
+
+T2 = [cos(q3), -sin(q3), 0, l2;
+      sin(q3),  cos(q3), 0,  0;
+      0,        0,       1,  0;
+      0,        0,       0,  1];
+
+
+T3 = [1, 0, 0, l3;
+      0, 1, 0,  0;
+      0, 0, 1,  0;
+      0, 0, 0,  1];
+
+
+T03 = T0*T1*T2*T3;
+simplify(T03)
+
+px = T03(1,4);
+py = T03(2,4);
+pz = T03(3,4);
+
+J = [diff(px,q1), diff(px,q2), diff(px,q3);
+     diff(py,q1), diff(py,q2), diff(py,q3);
+     diff(pz,q1), diff(pz,q2), diff(pz,q3)];
+simplify(J)
+
